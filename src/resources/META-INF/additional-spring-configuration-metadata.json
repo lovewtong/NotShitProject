@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "swagger.enable",
+      "type": "java.lang.String",
+      "description": "Description for swagger.enable."
+    },
+    {
+      "name": "jwt.header",
+      "type": "java.lang.String",
+      "description": "Description for jwt.header."
+    },
+    {
+      "name": "jwt.tokenPrefix",
+      "type": "java.lang.String",
+      "description": "Description for jwt.tokenPrefix."
+    },
+    {
+      "name": "knife4j.documents",
+      "type": "java.lang.String",
+      "description": "Description for knife4j.documents."
+    }
+  ] }

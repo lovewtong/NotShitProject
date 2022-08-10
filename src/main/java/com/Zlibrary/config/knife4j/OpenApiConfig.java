@@ -75,8 +75,8 @@ public class OpenApiConfig {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("My Demo")
-                .description("demo项目API文档")
+                .title("随机阅读")
+                .description("随机阅读API文档")
                 .contact(new Contact("sy", "https://github.com/wusy568", "wtwsy99@gmail.com"))
                 .termsOfServiceUrl("http://localhost")
                 .version("1.0")
