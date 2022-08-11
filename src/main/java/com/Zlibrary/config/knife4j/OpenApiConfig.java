@@ -3,6 +3,7 @@ package com.Zlibrary.config.knife4j;
 import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
 import com.Zlibrary.config.swagger.ResponseStatus;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
  **/
 @Configuration
 @EnableOpenApi
+@ConditionalOnProperty(name = "knife4j.enable", havingValue = "true")
 public class OpenApiConfig {
 
     private final OpenApiExtensionResolver openApiExtensionResolver;

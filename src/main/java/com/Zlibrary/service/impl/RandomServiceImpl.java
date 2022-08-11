@@ -3,7 +3,6 @@ package com.Zlibrary.service.impl;
 import com.Zlibrary.entity.RandomArticle;
 import com.Zlibrary.mapper.RandomMapper;
 import com.Zlibrary.service.RandomService;
-import com.Zlibrary.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

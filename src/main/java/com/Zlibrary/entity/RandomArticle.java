@@ -1,6 +1,8 @@
 package com.Zlibrary.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import io.swagger.annotations.ApiModel;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
@@ -10,9 +12,12 @@ import java.time.LocalDateTime;
  * @author: sy
  * @date: 2022-08-09
  **/
+@ApiModel(value = "userInformation")
+@Data
+@TableName("article")
 public class RandomArticle {
 
-    @TableId(type = IdType.AUTO)
+    @TableId()
     private Integer id;
 
     private String title;
@@ -34,4 +39,6 @@ public class RandomArticle {
     private Integer deleteStatus;
 
 
+    public RandomArticle() {
+    }
 }
