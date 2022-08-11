@@ -6,13 +6,11 @@ import com.Zlibrary.service.RandomService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @className: RandomController
@@ -39,18 +37,13 @@ public class RandomController {
     @ApiImplicitParam(name = "ArticleParam", type = "body", dataTypeClass = RandomArticle.class, required = true)
     public ResponseEntity<String> insert(@RequestBody RandomArticle randomArticle) {
 
-        if (randomService.save(randomArticle)){
-            return ResponseEntity.ok("success");
-        }else {
-            return ResponseEntity.ok("false");
-        }
-
-
+        randomService.save(randomArticle);
+        return ResponseEntity.ok("success");
 
     }
 
     //没数据新增一条，有数据修改一条
-    @ApiOperation(value = "新增或者修改",httpMethod = "PUT")
+    @ApiOperation(value = "新增或者修改", httpMethod = "PUT")
     @PutMapping("/saveOrUpdate")
     public boolean saveOrUpdate(@RequestBody RandomArticle randomArticle) {
 
