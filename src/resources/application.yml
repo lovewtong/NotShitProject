@@ -2,7 +2,7 @@ spring:
   datasource:
     # mysql useSSL=false消除警告SSL连接问题
     url: jdbc:mysql://localhost:3306/zlibrary?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
   data:
@@ -26,7 +26,7 @@ mybatis-plus:
 
 server:
   #端口号
-  port: 8050
+  port: 8060
   #项目名，如果不设定，默认是 /
   servlet:
     context-path: /zlibrary
@@ -45,33 +45,33 @@ server:
 #            AbstractSerializableParameter: ERROR
 
 #----------------knife4j配置-----------------------
-knife4j:
-  enable: true
-  documents:
-    - group: MongoTest Group
-      name: My Documents
-      locations: classpath:wiki/*
-  setting:
-    # default lang
-    language: zh-CN
-
-    # footer
-    enableFooter: false
-    enableFooterCustom: true
-    footerCustomContent: WUSY | [knife4j]
-
-    # header
-    enableHomeCustom: true
-    homeCustomLocation: classpath:wiki/README.md
-
-    # models
-    enableSwaggerModels: true
-    swaggerModelName: My Models
-  # 启动用户登录验证
-  basic:
-    enable: true
-    username: root
-    password: 123456
+#knife4j:
+#  enable: true
+#  documents:
+#    - group: MongoTest Group
+#      name: My Documents
+#      locations: classpath:wiki/*
+#  setting:
+#    # default lang
+#    language: zh-CN
+#
+#    # footer
+#    enableFooter: false
+#    enableFooterCustom: true
+#    footerCustomContent: WUSY | [knife4j]
+#
+#    # header
+#    enableHomeCustom: true
+#    homeCustomLocation: classpath:wiki/README.md
+#
+#    # models
+#    enableSwaggerModels: true
+#    swaggerModelName: My Models
+#  # 启动用户登录验证
+#  basic:
+#    enable: true
+#    username: root
+#    password: 123456
 
 #JWT
 jwt:
@@ -79,7 +79,6 @@ jwt:
   tokenPrefix: "Bearer " #token前缀
   secret: "qwertyuiop7418520" #密钥
   expireTime: 1 #token有效时间 (分钟) 建议一小时以上
-
 
 
 
