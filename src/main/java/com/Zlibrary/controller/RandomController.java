@@ -35,18 +35,17 @@ public class RandomController {
     @ApiImplicitParam(name = "ArticleParam", type = "body", dataTypeClass = RandomArticle.class, required = true)
     public ResponseEntity<String> insert(@RequestBody RandomArticle randomArticle) {
 
-        if (randomService.save(randomArticle)){
+        if (randomService.save(randomArticle)) {
             return ResponseEntity.ok("success");
-        }else {
+        } else {
             return ResponseEntity.ok("false");
         }
-
 
 
     }
 
     //没数据新增一条，有数据修改一条
-    @ApiOperation(value = "新增或者修改",httpMethod = "PUT")
+    @ApiOperation(value = "新增或者修改", httpMethod = "PUT")
     @PutMapping("/saveOrUpdate")
     public boolean saveOrUpdate(@RequestBody RandomArticle randomArticle) {
 

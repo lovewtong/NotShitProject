@@ -8,8 +8,8 @@ spring:
   data:
     #mongoDB
     mongodb:
-      #username: root
-      #password: 123456
+      username: root
+      password: 123456
       uri: mongodb://localhost:27017/zlibrary
 
 
@@ -53,7 +53,7 @@ server:
 #      locations: classpath:wiki/*
 #  setting:
 #    # default lang
-#    language: zh-CN
+#    language: zh-CN2
 #
 #    # footer
 #    enableFooter: false
