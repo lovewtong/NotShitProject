@@ -9,5 +9,10 @@
       "name": "knife4j.documents",
       "type": "java.lang.String",
       "description": "Description for knife4j.documents."
+    },
+    {
+      "name": "spring.decorator.datasource.p6spy.logging",
+      "type": "java.lang.String",
+      "description": "Description for spring.decorator.datasource.p6spy.logging."
     }
   ] }

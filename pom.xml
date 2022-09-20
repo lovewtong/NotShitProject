@@ -74,6 +74,14 @@
             <version>3.5.1</version>
         </dependency>
 
+        <!--执行SQL分析打印-->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.9.1</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

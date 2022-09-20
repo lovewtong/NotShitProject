@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @className: RandomController
  * @description: TODO 类描述
@@ -36,6 +39,10 @@ public class RandomController {
     public ResponseEntity<String> insert(@RequestBody RandomArticle randomArticle) {
 
         if (randomService.save(randomArticle)) {
+
+            String essay = randomArticle.getEssay();
+            String s = numFormat(essay);
+
             return ResponseEntity.ok("success");
         } else {
             return ResponseEntity.ok("false");
@@ -51,5 +58,19 @@ public class RandomController {
 
         return randomService.saveOrUpdate(randomArticle);
 
+    }
+
+    private static String numFormat(String line) {
+        String pattern = "[一二两三四五六七八九十○零百0-9１２３４５６７８９０]{1,12}、";
+        Pattern p = Pattern.compile(pattern);
+
+        // 获取 matcher 对象
+        Matcher m = p.matcher(line);
+        StringBuffer sb = new StringBuffer();
+        while(m.find()){
+            m.appendReplacement(sb,"\n"+m.group(0));
+        }
+        m.appendTail(sb);
+        return sb.toString() ;
     }
 }
