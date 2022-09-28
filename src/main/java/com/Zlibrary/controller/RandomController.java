@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Random;
 
 /**
  * @className: RandomController
@@ -40,14 +39,10 @@ public class RandomController {
 
         if (randomService.save(randomArticle)) {
 
-            String essay = randomArticle.getEssay();
-            String s = numFormat(essay);
-
             return ResponseEntity.ok("success");
         } else {
             return ResponseEntity.ok("false");
         }
-
 
     }
 
@@ -60,17 +55,21 @@ public class RandomController {
 
     }
 
-    private static String numFormat(String line) {
-        String pattern = "[一二两三四五六七八九十○零百0-9１２３４５６７８９０]{1,12}、";
-        Pattern p = Pattern.compile(pattern);
+    //随机阅读
+    @ApiOperation(value = "随机根据ID读取文章", httpMethod = "GET")
+    @GetMapping("/randomRead")
+    @ApiImplicitParam(name = "ArticleParam", type = "body", dataTypeClass = RandomArticle.class, required = true)
+    public RandomArticle randomRead() {
 
-        // 获取 matcher 对象
-        Matcher m = p.matcher(line);
-        StringBuffer sb = new StringBuffer();
-        while(m.find()){
-            m.appendReplacement(sb,"\n"+m.group(0));
-        }
-        m.appendTail(sb);
-        return sb.toString() ;
+        long count = randomService.count();
+        int i = (int)count;
+        int num = i+1;
+
+        Random rand=new Random();
+
+        //返回值在范围[0,100) 即[0,99
+        int n1=rand.nextInt(num);
+
+        return randomService.getById(n1);
     }
 }
