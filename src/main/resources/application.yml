@@ -2,15 +2,19 @@ spring:
   datasource:
     # mysql useSSL=false消除警告SSL连接问题
     url: jdbc:p6spy:mysql://localhost:3306/zlibrary?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
-    #url: jdbc:p6spy:mysql://localhost:3306/zlibrary?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    #url: jdbc:p6spy:mysql://81.68.219.210:3306/zlibrary?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     username: root
-    password: 123456
+    password: 123
+
+    #服务器
+    #username: root
+    #password: 1234Qwer.
   data:
     #mongoDB
     mongodb:
       username: root
-      password: 123456
+      password:
       uri: mongodb://localhost:27017/zlibrary
   decorator:
     datasource:
@@ -33,7 +37,7 @@ mybatis-plus:
 
 server:
   #端口号
-  port: 8060
+  port: 7070
   #项目名，如果不设定，默认是 /
   servlet:
     context-path: /zlibrary
@@ -52,33 +56,34 @@ server:
 #            AbstractSerializableParameter: ERROR
 
 #----------------knife4j配置-----------------------
-#knife4j:
-#  enable: true
-#  documents:
-#    - group: MongoTest Group
-#      name: My Documents
-#      locations: classpath:wiki/*
-#  setting:
-#    # default lang
-#    language: zh-CN2
-#
-#    # footer
-#    enableFooter: false
-#    enableFooterCustom: true
-#    footerCustomContent: WUSY | [knife4j]
-#
-#    # header
-#    enableHomeCustom: true
-#    homeCustomLocation: classpath:wiki/README.md
-#
-#    # models
-#    enableSwaggerModels: true
-#    swaggerModelName: My Models
-#  # 启动用户登录验证
-#  basic:
-#    enable: true
-#    username: root
-#    password: 123456
+knife4j:
+  enable: true
+  documents:
+    - group: MongoTest Group
+      name: My Documents
+      locations: classpath:wiki/*
+  setting:
+    # default lang
+    language: zh-CN
+
+    # footer
+    enableFooter: false
+    enableFooterCustom: true
+    footerCustomContent: WUSY | [knife4j]
+
+    # header
+    enableHomeCustom: true
+    homeCustomLocation: classpath:wiki/README.md
+
+    # models
+    enableSwaggerModels: true
+    swaggerModelName: My Models
+  # 启动用户登录验证
+  basic:
+    enable: true
+    username: root
+    password: 123456
+
 
 #JWT
 jwt:

@@ -1,18 +1,18 @@
 {
   "properties": [
     {
-      "name": "knife4j.enable",
+      "name": "swagger.enable",
       "type": "java.lang.String",
-      "description": "Description for knife4j.enable."
+      "description": "Description for swagger.enable."
     },
     {
-      "name": "knife4j.documents",
+      "name": "jwt.header",
       "type": "java.lang.String",
-      "description": "Description for knife4j.documents."
+      "description": "Description for jwt.header."
     },
     {
-      "name": "spring.decorator.datasource.p6spy.logging",
+      "name": "jwt.tokenPrefix",
       "type": "java.lang.String",
-      "description": "Description for spring.decorator.datasource.p6spy.logging."
+      "description": "Description for jwt.tokenPrefix."
     }
   ] }
