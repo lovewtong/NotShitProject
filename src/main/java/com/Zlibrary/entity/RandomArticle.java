@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @TableName("article")
 public class RandomArticle {
 
-    @TableId()
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private String title;
