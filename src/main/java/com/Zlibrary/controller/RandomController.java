@@ -18,7 +18,7 @@ import java.util.Random;
  * @author: sy
  * @date: 2022-08-05
  **/
-@Api(tags = "mybatisPlus CRUD")
+@Api(tags = "NotShitProject 接口集合")
 @RestController
 @RequestMapping("/controller")
 public class RandomController {

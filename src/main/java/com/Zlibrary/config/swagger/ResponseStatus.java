@@ -40,6 +40,5 @@ public enum ResponseStatus {
      * description.
      */
     private final String description;
-
 }
 

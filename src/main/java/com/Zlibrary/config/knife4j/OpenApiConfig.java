@@ -38,7 +38,7 @@ public class OpenApiConfig {
     @Bean
     public Docket openApi() {
 
-        String groupName = "MongoTest Group";
+        String groupName = "Test Group";
         return new Docket(DocumentationType.OAS_30)
                 .groupName(groupName)
                 .apiInfo(apiInfo())
@@ -80,7 +80,7 @@ public class OpenApiConfig {
                 .title("随机阅读")
                 .description("随机阅读API文档")
                 .contact(new Contact("sy", "https://github.com/wusy568", "wtwsy99@gmail.com"))
-                .termsOfServiceUrl("http://localhost")
+                .termsOfServiceUrl("http://pddbook.club/")
                 .version("1.0")
                 .build();
     }

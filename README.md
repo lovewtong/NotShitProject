@@ -13,6 +13,7 @@ author      varchar(255) not null comment '文章作者',
 create_time datetime     null comment '存入时间',
 update_time datetime     null comment '更新时间',
 title       varchar(255) not null comment '文章标题',
+essay       text         null comment '文章',
 essay       text         null comment '文章'
 );
 

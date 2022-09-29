@@ -2,7 +2,6 @@ package com.Zlibrary.mapper;
 
 import com.Zlibrary.entity.RandomArticle;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @className: RandomMapper
