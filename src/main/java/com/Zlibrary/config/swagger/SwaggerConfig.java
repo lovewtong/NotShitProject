@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import springfox.documentation.builders.*;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.schema.ScalarType;
@@ -61,7 +62,7 @@ public class SwaggerConfig {
                 .collect(Collectors.toList());
     }
 
-    private List<RequestParameter> getGlobalRequestParameters(){
+    private List<RequestParameter> getGlobalRequestParameters() {
         List<RequestParameter> parameters = new ArrayList<>();
         parameters.add(new RequestParameterBuilder()
                 .name("AppKey")
@@ -83,12 +84,15 @@ public class SwaggerConfig {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("My Demo")
-                .description("demo项目API文档")
-                .contact(new Contact("sy","https://github.com/wusy568","wtwsy99@gmail.com"))
-                .termsOfServiceUrl("http://localhost")
+                .title("NotShitProject")
+                .description("NotShitProject API文档")
+                .contact(new Contact("NotShitProject", "https://github.com/lovewtong/NotShitProject", "wtwsy99@gmail.com"))
+                .termsOfServiceUrl("http://pddbook.club")
                 .version("1.0")
                 .build();
     }
+
+
+
 }
 
