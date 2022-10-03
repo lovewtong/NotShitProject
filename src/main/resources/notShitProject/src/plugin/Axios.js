@@ -14,11 +14,7 @@ axios.interceptors.request.use((config) => {
 
 // 响应拦截器
 axios.interceptors.response.use((response) => {
-    if (response.resultCode === 200) {
-        return response.data
-    } else {
-        return { resultCode: -1 }
-    }
+    return response.data
 })
 
 export default axios

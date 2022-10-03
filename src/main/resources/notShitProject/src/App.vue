@@ -12,5 +12,6 @@ import { RouterLink, RouterView } from 'vue-router'
 #appContainer {
   width: 100%;
   height: 100%;
+  background: #555555;
 }
 </style>
