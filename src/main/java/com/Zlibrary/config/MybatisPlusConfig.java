@@ -1,7 +1,11 @@
 package com.Zlibrary.config;
 
-//import com.wu.mybatisplus.expand.ExpandSqlInjector;
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @className: MybatisPlusConfig
@@ -9,23 +13,27 @@ import org.springframework.context.annotation.Bean;
  * @author: sy
  * @date: 2022-03-29
  **/
-/*public class MybatisPlusConfig {
+@Configuration
+//扫描mapper接口所在的包
+@MapperScan("com.Zlibrary.mapper")
+public class MybatisPlusConfig {
 
-    *//**
+    /**
      * 分页插件
-     *//*
-    *//*@Bean
-    public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor page = new PaginationInterceptor();
-        page.setOverflow(true);
-        page.setDbType(DbType.MYSQL);
-        return page;
-    }*//*
-
+     * @return
+     */
     @Bean
-    public ExpandSqlInjector expandSqlInjector() {
-        return new ExpandSqlInjector();
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        return interceptor;
     }
 
 
-}*/
+//    @Bean
+//    public ExpandSqlInjector expandSqlInjector() {
+//        return new ExpandSqlInjector();
+//    }
+
+
+}

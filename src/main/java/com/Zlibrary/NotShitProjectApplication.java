@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.Zlibrary.mapper")
 public class NotShitProjectApplication {
 
     public static void main(String[] args) {

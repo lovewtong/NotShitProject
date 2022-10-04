@@ -1,15 +1,20 @@
 package com.Zlibrary.controller;
 
 import com.Zlibrary.entity.RandomArticle;
+import com.Zlibrary.entity.User;
 import com.Zlibrary.mapper.RandomMapper;
 import com.Zlibrary.service.RandomService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -34,7 +39,6 @@ public class RandomController {
     //插入一条数据
     @ApiOperation(value = "插入一条数据", httpMethod = "POST")
     @PostMapping("/insert")
-    @ApiImplicitParam(name = "ArticleParam", type = "body", dataTypeClass = RandomArticle.class, required = true)
     public ResponseEntity<String> insert(@RequestBody RandomArticle randomArticle) {
 
         if (randomService.save(randomArticle)) {
@@ -58,18 +62,40 @@ public class RandomController {
     //随机阅读
     @ApiOperation(value = "随机根据ID读取文章", httpMethod = "GET")
     @GetMapping("/randomRead")
-    @ApiImplicitParam(name = "ArticleParam", type = "body", dataTypeClass = RandomArticle.class, required = true)
     public RandomArticle randomRead() {
 
         long count = randomService.count();
-        int i = (int)count;
-        int num = i+1;
+        int i = (int) count;
 
-        Random rand=new Random();
+        Random rand = new Random();
 
-        //返回值在范围[0,100) 即[0,99
-        int n1=rand.nextInt(num);
+        //返回值在范围[0,num) 即[0,num)
+        int n1 = rand.nextInt(i + 1);
 
         return randomService.getById(n1);
     }
+
+    //根据ID查询详细数据
+    @ApiOperation(value = "根据ID读取文章", httpMethod = "GET")
+    @GetMapping("/IdRead")
+    public RandomArticle IdRead(@PathVariable("id") Integer id) {
+
+        return randomService.getById(id);
+    }
+
+    //无条件的分页查询
+    @ApiOperation(value = "不带条件的分页查询", httpMethod = "GET")
+    @GetMapping("/SelByPage")
+    public ResponseEntity<String> SelByPage(@RequestParam(value = "page") Integer currentPage, Integer size) {
+
+        Page<RandomArticle> page = new Page<>(currentPage,size);
+        Page<RandomArticle> page1 = randomMapper.selectPage(page, null);
+
+        if (page1 != null) {
+            return ResponseEntity.ok("success");
+        }
+        return ResponseEntity.ok("false");
+    }
+
+
 }
