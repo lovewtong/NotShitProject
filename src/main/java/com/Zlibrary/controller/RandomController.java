@@ -64,15 +64,23 @@ public class RandomController {
     @GetMapping("/randomRead")
     public RandomArticle randomRead() {
 
+        //获得总数
         long count = randomService.count();
-        int i = (int) count;
+        //逻辑有问题
+//
+//        Random rand = new Random();
+//
+//        //返回值在范围[0,num) 即[0,num)
+//        int n1 = rand.nextInt(i + 1);
 
-        Random rand = new Random();
+        //第二种，random.nextInt(max)表示生成[0,max]之间的随机数，然后对(max-min+1)取模。
+        int max = (int) count;
+        int min=1;
+        Random random = new Random();
 
-        //返回值在范围[0,num) 即[0,num)
-        int n1 = rand.nextInt(i + 1);
+        int num = random.nextInt(max)%(max-min+1) + min;
 
-        return randomService.getById(n1);
+        return randomService.getById(num);
     }
 
     //根据ID查询详细数据

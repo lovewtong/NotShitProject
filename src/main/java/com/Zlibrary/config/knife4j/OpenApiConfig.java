@@ -61,8 +61,8 @@ public class OpenApiConfig {
     private List<RequestParameter> getGlobalRequestParameters() {
         List<RequestParameter> parameters = new ArrayList<>();
         parameters.add(new RequestParameterBuilder()
-                .name("AppKey")
-                .description("App Key")
+//                .name("AppKey")
+//                .description("App Key")
                 .required(false)
                 .in(ParameterType.QUERY)
                 .query(q -> q.model(m -> m.scalarModel(ScalarType.STRING)))
