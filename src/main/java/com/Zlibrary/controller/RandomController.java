@@ -9,13 +9,15 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.jetbrains.annotations.TestOnly;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @className: RandomController
@@ -34,6 +36,9 @@ public class RandomController {
 
     @Autowired
     private RandomService randomService;
+
+    @Value("${time.startTime}")
+    private Date startTime;
 
 
     //插入一条数据
@@ -83,10 +88,31 @@ public class RandomController {
         return randomService.getById(num);
     }
 
+    //每日阅读
+    @ApiOperation(value = "每日阅读",httpMethod = "GET")
+    @GetMapping("/DailyRead")
+    public RandomArticle DailyRead() throws ParseException {
+
+        //格式化时间
+        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        //设定初始值
+        Date timeDate1 = simpleFormat.parse("2022-10-10 00:00:00");
+        Date timeDate2 = new Date();// 获取当前时间
+
+        long time1 = timeDate1.getTime();
+        long time2 = timeDate2.getTime();
+
+        //计算差值，即Id
+        int id = (int) ((time2 - time1) / (1000 * 60 * 60 * 24));
+
+        return randomService.getById(id);
+    }
+
     //根据ID查询详细数据
     @ApiOperation(value = "根据ID读取文章", httpMethod = "GET")
     @GetMapping("/IdRead")
-    public RandomArticle IdRead(@PathVariable("id") Integer id) {
+    public RandomArticle IdRead(@RequestParam(value = "id") Integer id) {
 
         return randomService.getById(id);
     }
@@ -104,6 +130,7 @@ public class RandomController {
         }
         return ResponseEntity.ok("false");
     }
+
 
 
 }
