@@ -1,7 +1,11 @@
 package com.Zlibrary.mapper;
 
+import com.Zlibrary.controller.RandomController;
 import com.Zlibrary.entity.RandomArticle;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import java.util.List;
 
 /**
  * @className: RandomMapper
@@ -10,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @date: 2022-08-09
  **/
 public interface RandomMapper extends BaseMapper<RandomArticle> {
+    List<RandomArticle> findPageArticle(Page<RandomArticle> page);
 }

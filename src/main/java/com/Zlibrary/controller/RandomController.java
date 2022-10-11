@@ -1,16 +1,23 @@
 package com.Zlibrary.controller;
 
 import com.Zlibrary.entity.RandomArticle;
+import com.Zlibrary.entity.User;
 import com.Zlibrary.mapper.RandomMapper;
 import com.Zlibrary.service.RandomService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.jetbrains.annotations.TestOnly;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Random;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @className: RandomController
@@ -30,11 +37,13 @@ public class RandomController {
     @Autowired
     private RandomService randomService;
 
+    @Value("${time.startTime}")
+    private Date startTime;
+
 
     //插入一条数据
     @ApiOperation(value = "插入一条数据", httpMethod = "POST")
     @PostMapping("/insert")
-    @ApiImplicitParam(name = "ArticleParam", type = "body", dataTypeClass = RandomArticle.class, required = true)
     public ResponseEntity<String> insert(@RequestBody RandomArticle randomArticle) {
 
         if (randomService.save(randomArticle)) {
@@ -58,18 +67,70 @@ public class RandomController {
     //随机阅读
     @ApiOperation(value = "随机根据ID读取文章", httpMethod = "GET")
     @GetMapping("/randomRead")
-    @ApiImplicitParam(name = "ArticleParam", type = "body", dataTypeClass = RandomArticle.class, required = true)
     public RandomArticle randomRead() {
 
+        //获得总数
         long count = randomService.count();
-        int i = (int)count;
-        int num = i+1;
+        //逻辑有问题
+//
+//        Random rand = new Random();
+//
+//        //返回值在范围[0,num) 即[0,num)
+//        int n1 = rand.nextInt(i + 1);
 
-        Random rand=new Random();
+        //第二种，random.nextInt(max)表示生成[0,max]之间的随机数，然后对(max-min+1)取模。
+        int max = (int) count;
+        int min=1;
+        Random random = new Random();
 
-        //返回值在范围[0,100) 即[0,99
-        int n1=rand.nextInt(num);
+        int num = random.nextInt(max)%(max-min+1) + min;
 
-        return randomService.getById(n1);
+        return randomService.getById(num);
     }
+
+    //每日阅读
+    @ApiOperation(value = "每日阅读",httpMethod = "GET")
+    @GetMapping("/DailyRead")
+    public RandomArticle DailyRead() throws ParseException {
+
+        //格式化时间
+        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        //设定初始值
+        Date timeDate1 = simpleFormat.parse("2022-10-10 00:00:00");
+        Date timeDate2 = new Date();// 获取当前时间
+
+        long time1 = timeDate1.getTime();
+        long time2 = timeDate2.getTime();
+
+        //计算差值，即Id
+        int id = (int) ((time2 - time1) / (1000 * 60 * 60 * 24));
+
+        return randomService.getById(id);
+    }
+
+    //根据ID查询详细数据
+    @ApiOperation(value = "根据ID读取文章", httpMethod = "GET")
+    @GetMapping("/IdRead")
+    public RandomArticle IdRead(@RequestParam(value = "id") Integer id) {
+
+        return randomService.getById(id);
+    }
+
+    //无条件的分页查询
+    @ApiOperation(value = "不带条件的分页查询", httpMethod = "GET")
+    @GetMapping("/SelByPage")
+    public ResponseEntity<String> SelByPage(@RequestParam(value = "page") Integer currentPage, Integer size) {
+
+        Page<RandomArticle> page = new Page<>(currentPage,size);
+        Page<RandomArticle> page1 = randomMapper.selectPage(page, null);
+
+        if (page1 != null) {
+            return ResponseEntity.ok("success");
+        }
+        return ResponseEntity.ok("false");
+    }
+
+
+
 }

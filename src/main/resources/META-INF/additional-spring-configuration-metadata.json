@@ -14,5 +14,10 @@
       "name": "jwt.tokenPrefix",
       "type": "java.lang.String",
       "description": "Description for jwt.tokenPrefix."
+    },
+    {
+      "name": "spring.decorator.datasource.p6spy.logging",
+      "type": "java.lang.String",
+      "description": "Description for spring.decorator.datasource.p6spy.logging."
     }
   ] }
