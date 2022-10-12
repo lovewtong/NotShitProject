@@ -61,16 +61,45 @@ public class OpenApiConfig {
     private List<RequestParameter> getGlobalRequestParameters() {
         List<RequestParameter> parameters = new ArrayList<>();
         parameters.add(new RequestParameterBuilder()
-                .name("AppKey")
-                .description("App Key")
+                .name("id")
+                .description("id test")
                 .required(false)
                 .in(ParameterType.QUERY)
                 .query(q -> q.model(m -> m.scalarModel(ScalarType.STRING)))
                 .required(false)
                 .build()
         );
+        parameters.add(new RequestParameterBuilder()
+                .name("title")
+                .description("title test")
+                .required(true)
+                .in(ParameterType.QUERY)
+                .query(q -> q.model(m -> m.scalarModel(ScalarType.STRING)))
+                .required(false)
+                .build()
+        );
+        parameters.add(new RequestParameterBuilder()
+                .name("author")
+                .description("author test")
+                .required(true)
+                .in(ParameterType.QUERY)
+                .query(q -> q.model(m -> m.scalarModel(ScalarType.STRING)))
+                .required(false)
+                .build()
+        );
+        parameters.add(new RequestParameterBuilder()
+                .name("essay")
+                .description("essay test")
+                .required(true)
+                .in(ParameterType.QUERY)
+                .query(q -> q.model(m -> m.scalarModel(ScalarType.STRING)))
+                .required(false)
+                .build()
+        );
+
         return parameters;
     }
+
 
     /**
      * @return api info
