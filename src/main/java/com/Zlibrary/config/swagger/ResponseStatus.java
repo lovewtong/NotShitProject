@@ -32,12 +32,12 @@ public enum ResponseStatus {
             ));
 
     /**
-     * response code
+     * 状态码
      */
     private final String responseCode;
 
     /**
-     * description.
+     * 描述
      */
     private final String description;
 }

@@ -86,15 +86,12 @@ knife4j:
     username: root
     password: 123456
 
+#自定义常量
+myCustomConstants:
 
-#JWT
-jwt:
-  header: "Authorization" #token返回头部
-  tokenPrefix: "Bearer " #token前缀
-  secret: "qwertyuiop7418520" #密钥
-  expireTime: 1 #token有效时间 (分钟) 建议一小时以上
+  #起始时间，默认2022/10/10 1665331200
+  startTime: 1665331200
 
-time:
-  startTime: 2022-10-8 00:00:00
-
+  #起始id
+  id: 0
 

@@ -1,10 +1,10 @@
 package com.Zlibrary.config.customization;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
-
-import java.util.Date;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @className: CustomizationProperties
@@ -12,10 +12,16 @@ import java.util.Date;
  * @author: sy
  * @date: 2022-10-10
  **/
+
 @Data
-@Component
-@ConfigurationProperties("time")
+@NoArgsConstructor
+@AllArgsConstructor
+@Configuration
 public class CustomizationProperties {
 
-    private Date startTime;
+    @Value("${myCustomConstants.startTime}")
+    long startTime;
+
+    @Value("${myCustomConstants.id}")
+    int id;
 }

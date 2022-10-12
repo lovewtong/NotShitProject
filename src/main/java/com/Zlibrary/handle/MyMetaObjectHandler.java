@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 /**
  * @className: MyMetaObjectHandler
- * @description: TODO 类描述
+ * @description: MybatisPlus配置类，负责处理创建时间，更新时间，以及假删除
  * @author: sy
  * @date: 2022-03-23
  **/
@@ -26,7 +26,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
         //设置逻辑删除默认值
-        this.setFieldValByName("deleteStatus",0,metaObject);
+        this.setFieldValByName("deleteStatus", 0, metaObject);
 
     }
 
