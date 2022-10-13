@@ -3,8 +3,10 @@ package com.Zlibrary.controller;
 import com.Zlibrary.config.customization.CustomizationProperties;
 import com.Zlibrary.entity.RandomArticle;
 import com.Zlibrary.mapper.RandomMapper;
+import com.Zlibrary.response.PageBean;
+import com.Zlibrary.response.ResultData;
 import com.Zlibrary.service.RandomService;
-import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,12 +50,6 @@ public class RandomController {
     }
 
     //没数据新增一条，有数据修改一条
-    @ApiOperationSupport(includeParameters = {
-            "id",
-            "title",
-            "author",
-            "essay"
-    })
     @ApiOperation(value = "新增或者修改", httpMethod = "PUT")
     @PutMapping("/saveOrUpdate")
     public RandomArticle saveOrUpdate(@RequestBody RandomArticle randomArticle) {
@@ -125,19 +121,17 @@ public class RandomController {
 
     }
 
-//    //无条件的分页查询
-//    @ApiOperation(value = "不带条件的分页查询", httpMethod = "GET")
-//    @GetMapping("/SelByPage")
-//    public ResponseEntity<String> SelByPage(@RequestParam(value = "page") Integer currentPage, Integer size) {
-//
-//        Page<RandomArticle> page = new Page<>(currentPage, size);
-//        Page<RandomArticle> page1 = randomMapper.selectPage(page, null);
-//
-//        if (page1 != null) {
-//            return ResponseEntity.ok("success");
-//        }
-//        return ResponseEntity.ok("false");
-//    }
+    //无条件的分页查询
+    @ApiOperation(value = "不带条件的分页查询", httpMethod = "GET")
+    @GetMapping("/SelByPage")
+    public ResultData SelByPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage,
+                                @RequestParam(value = "size", required = false, defaultValue = "10") Integer size) {
+
+        Page<RandomArticle> page = new Page<>(currentPage, size);
+        Page<RandomArticle> randomArticlePage = randomMapper.selectPage(page, null);
+
+        return ResultData.success(new PageBean<>(randomArticlePage.getTotal(), randomArticlePage.getRecords()));
+    }
 
 
 }
