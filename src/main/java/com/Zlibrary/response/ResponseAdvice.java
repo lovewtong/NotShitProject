@@ -34,10 +34,10 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
     @SneakyThrows
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if(o instanceof String){
+        if (o instanceof String) {
             return objectMapper.writeValueAsString(ResultData.success(o));
         }
-        if(o instanceof ResultData){
+        if (o instanceof ResultData) {
             return o;
         }
         return ResultData.success(o);

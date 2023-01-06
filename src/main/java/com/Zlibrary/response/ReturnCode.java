@@ -9,7 +9,7 @@ package com.Zlibrary.response;
 public enum ReturnCode {
 
     /**操作成功**/
-    RC100(100,"操作成功"),
+    RC100(200,"操作成功"),
     /**操作失败**/
     RC999(999,"操作失败"),
 

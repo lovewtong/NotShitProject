@@ -10,17 +10,25 @@ import lombok.Data;
  **/
 @Data
 public class ResultData<T> {
-    /** 结果状态 ,具体状态码参见ResultData.java*/
+    /**
+     * 结果状态 ,具体状态码参见ResultData.java
+     */
     private int status;
-    /**响应消息**/
+    /**
+     * 响应消息
+     **/
     private String message;
-    /**响应数据**/
+    /**
+     * 响应数据
+     **/
     private T data;
-    /**接口请求时间**/
-    private long timestamp ;
+    /**
+     * 接口请求时间
+     **/
+    private long timestamp;
 
 
-    public ResultData (){
+    public ResultData() {
         this.timestamp = System.currentTimeMillis();
     }
 
@@ -66,7 +74,7 @@ public class ResultData<T> {
         return resultData;
     }
 
-    public static <T>ResultData<T> fail() {
+    public static <T> ResultData<T> fail() {
         ResultData<T> resultData = new ResultData<>();
         resultData.setStatus(ReturnCode.RC999.getCode());
 //        resultData.setSuccess(false);

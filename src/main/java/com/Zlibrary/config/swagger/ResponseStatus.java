@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @className: status
- * @description: TODO 类描述
+ * @description: knife4j状态返回码
  * @author: sy
  * @date: 2022-04-14
  **/

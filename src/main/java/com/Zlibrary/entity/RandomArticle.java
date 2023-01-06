@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 /**
  * @className: RandomArticle
- * @description: TODO 类描述
+ * @description: 文章实体类
  * @author: sy
  * @date: 2022-08-09
  **/

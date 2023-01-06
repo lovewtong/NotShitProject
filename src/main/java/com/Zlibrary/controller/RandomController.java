@@ -6,13 +6,13 @@ import com.Zlibrary.mapper.RandomMapper;
 import com.Zlibrary.response.PageBean;
 import com.Zlibrary.response.ResultData;
 import com.Zlibrary.service.RandomService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -88,7 +88,7 @@ public class RandomController {
     //每日阅读
     @ApiOperation(value = "每日阅读", httpMethod = "GET")
     @GetMapping("/DailyRead")
-    public RandomArticle DailyRead() throws ParseException {
+    public RandomArticle DailyRead() {
 
         //格式化时间
         SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -107,9 +107,26 @@ public class RandomController {
 
         int num2 = customizationProperties.getId();
 
-        int id = num1 + num2;
+        int num3 = num1 + num2;
 
-        return randomService.getById(id);
+        //计算已存在的总数
+        long count = randomService.count();
+
+        if(count > num3){
+            return randomService.getById(num3);
+        }else{
+
+            long num4 = num3 - count;
+            long num5 = num4 % count;
+
+            if (num5 == 0){
+                return randomService.getById(count);
+            }else {
+                return randomService.getById(num5);
+            }
+
+        }
+
     }
 
     //根据ID查询详细数据

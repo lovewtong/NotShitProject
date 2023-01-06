@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 public class RestExceptionHandler {
     /**
      * 默认全局异常处理。
+     *
      * @param e the e
      * @return ResultData
      */
@@ -34,16 +35,16 @@ public class RestExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResultData<String> exception(Exception e) {
         log.error("全局异常信息 ex={}", e.getMessage(), e);
-        return ResultData.fail(ReturnCode.RC500.getCode(),e.getMessage());
+        return ResultData.fail(ReturnCode.RC500.getCode(), e.getMessage());
     }
 
     /**
      * Assert异常
      */
-    @ExceptionHandler({IllegalArgumentException.class,IllegalStateException.class})
+    @ExceptionHandler({IllegalArgumentException.class, IllegalStateException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResultData<String> exception(IllegalArgumentException e) {
-        return ResultData.fail(ReturnCode.ILLEGAL_ARGUMENT.getCode(),e.getMessage());
+        return ResultData.fail(ReturnCode.ILLEGAL_ARGUMENT.getCode(), e.getMessage());
     }
 
 
@@ -53,7 +54,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(BaseException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResultData<String> exception(BaseException e) {
-        return ResultData.fail(e.getErrorCode(),e.getMessage());
+        return ResultData.fail(e.getErrorCode(), e.getMessage());
     }
 
 
@@ -87,8 +88,9 @@ public class RestExceptionHandler {
             );
         }
 
-        log.error("参数校验异常:{}",resp.getMessage());
-        return new ResponseEntity<>(resp,HttpStatus.BAD_REQUEST);
+        assert resp != null;
+        log.error("参数校验异常:{}", resp.getMessage());
+        return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
     }
 
 }

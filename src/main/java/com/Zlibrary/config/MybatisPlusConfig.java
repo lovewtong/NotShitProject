@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @className: MybatisPlusConfig
- * @description: TODO 类描述
+ * @description: plus插件
  * @author: sy
  * @date: 2022-03-29
  **/

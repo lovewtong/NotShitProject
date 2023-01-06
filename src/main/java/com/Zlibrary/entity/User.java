@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 /**
  * @className: User
- * @description: TODO 类描述
+ * @description: 用户类
  * @author: sy
  * @date: 2022-08-09
  **/
