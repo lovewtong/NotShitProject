@@ -6,7 +6,6 @@ import com.Zlibrary.mapper.RandomMapper;
 import com.Zlibrary.response.PageBean;
 import com.Zlibrary.response.ResultData;
 import com.Zlibrary.service.RandomService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
@@ -112,16 +111,16 @@ public class RandomController {
         //计算已存在的总数
         long count = randomService.count();
 
-        if(count > num3){
+        if (count > num3) {
             return randomService.getById(num3);
-        }else{
+        } else {
 
             long num4 = num3 - count;
             long num5 = num4 % count;
 
-            if (num5 == 0){
+            if (num5 == 0) {
                 return randomService.getById(count);
-            }else {
+            } else {
                 return randomService.getById(num5);
             }
 
@@ -150,5 +149,23 @@ public class RandomController {
         return ResultData.success(new PageBean<>(randomArticlePage.getTotal(), randomArticlePage.getRecords()));
     }
 
+//    public RandomArticle ReadEpub() throws IOException {
+//        // 从文件中读取EPUB书籍
+//        InputStream epubInputStream = epubAnalysis.class.getResourceAsStream("123.epub");
+//        Book book = (new EpubReader()).readEpub(epubInputStream);
+//
+//        // 获取书籍中的全部章节
+//        List<Resource> chapters = book.getContents();
+//
+//        // 逐一打印每个章节的内容
+//        for (nl.siegmann.epublib.domain.Resource chapter : chapters) {
+//            System.out.println(new String(chapter.getData()));
+//        }
+//
+//        // 关闭输入流
+//        epubInputStream.close();
+//
+//        return null;
+//    }
 
 }

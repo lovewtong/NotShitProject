@@ -24,4 +24,7 @@ public class CustomizationProperties {
 
     @Value("${myCustomConstants.id}")
     int id;
+
+    @Value("${myCustomConstants.local}")
+    String local;
 }
