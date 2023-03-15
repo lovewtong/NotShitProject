@@ -38,4 +38,6 @@ public class User {
     @TableField(fill = FieldFill.INSERT)
     private Integer deleteStatus;
 
+    //文章 作者名 日期 类别 标签
+
 }
