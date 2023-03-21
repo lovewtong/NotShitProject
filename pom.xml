@@ -117,6 +117,22 @@
             <artifactId>epublib-core</artifactId>
             <version>3.1</version>
         </dependency>
+
+        <!-- 接入chatGpt -->
+        <dependency>
+            <groupId>com.unfbx</groupId>
+            <artifactId>chatgpt-java</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/at.bestsolution.efxclipse.eclipse/org.apache.commons.httpclient -->
+        <dependency>
+            <groupId>at.bestsolution.efxclipse.eclipse</groupId>
+            <artifactId>org.apache.commons.httpclient</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
