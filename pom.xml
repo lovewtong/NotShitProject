@@ -45,10 +45,11 @@
 
 
         <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-mongodb-gridfs -->
+        <!-- mongodb -->
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-mongodb-gridfs</artifactId>
-            <version>3.19.0</version>
+            <version>3.0.1</version>
         </dependency>
 
 
@@ -122,16 +123,19 @@
         <dependency>
             <groupId>com.unfbx</groupId>
             <artifactId>chatgpt-java</artifactId>
-            <version>1.0.5</version>
+            <version>1.0.6</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/at.bestsolution.efxclipse.eclipse/org.apache.commons.httpclient -->
+        <!-- 导入openai依赖 -->
         <dependency>
-            <groupId>at.bestsolution.efxclipse.eclipse</groupId>
-            <artifactId>org.apache.commons.httpclient</artifactId>
-            <version>3.1.0</version>
+            <groupId>com.theokanning.openai-gpt3-java</groupId>
+            <artifactId>client</artifactId>
+            <version>0.8.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
 
     </dependencies>
 

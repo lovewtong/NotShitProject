@@ -23,5 +23,5 @@ public class OpenAiApi {
     private String token;
 
 //    private static final MultiThreadedHttpConnectionManagerCONNECTION_MANAGER= new MultiThreadedHttpConnectionManager();
-
+    
 }

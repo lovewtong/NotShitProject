@@ -19,5 +19,10 @@
       "name": "spring.decorator.datasource.p6spy.logging",
       "type": "java.lang.String",
       "description": "Description for spring.decorator.datasource.p6spy.logging."
+    },
+    {
+      "name": "myCustomConstants.startTime",
+      "type": "java.lang.String",
+      "description": "Description for myCustomConstants.startTime."
     }
   ] }

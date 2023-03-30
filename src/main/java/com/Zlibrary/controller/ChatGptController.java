@@ -20,7 +20,7 @@ public class ChatGptController {
 
     Map<String,String> headers = new HashMap<>();
 
-    headers.put("Content-Type","application/json;charset=UTF-8");
+//    headers.put("Content-Type","application/json;charset=UTF-8");
 
 
 }
