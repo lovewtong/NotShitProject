@@ -37,20 +37,20 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- mongoDB大礼包 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
+<!--        &lt;!&ndash; mongoDB大礼包 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-data-mongodb</artifactId>-->
+<!--        </dependency>-->
 
 
         <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-mongodb-gridfs -->
         <!-- mongodb -->
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-mongodb-gridfs</artifactId>
-            <version>3.0.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.camel</groupId>-->
+<!--            <artifactId>camel-mongodb-gridfs</artifactId>-->
+<!--            <version>3.0.1</version>-->
+<!--        </dependency>-->
 
 
 
@@ -119,23 +119,6 @@
             <version>3.1</version>
         </dependency>
 
-        <!-- 接入chatGpt -->
-        <dependency>
-            <groupId>com.unfbx</groupId>
-            <artifactId>chatgpt-java</artifactId>
-            <version>1.0.6</version>
-        </dependency>
-
-        <!-- 导入openai依赖 -->
-        <dependency>
-            <groupId>com.theokanning.openai-gpt3-java</groupId>
-            <artifactId>client</artifactId>
-            <version>0.8.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-        </dependency>
 
     </dependencies>
 

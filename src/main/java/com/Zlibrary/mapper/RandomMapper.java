@@ -14,5 +14,7 @@ import java.util.List;
  * @date: 2022-08-09
  **/
 public interface RandomMapper extends BaseMapper<RandomArticle> {
+
+    // 分页查询
     List<RandomArticle> findPageArticle(Page<RandomArticle> page);
 }

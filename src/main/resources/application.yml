@@ -97,8 +97,3 @@ myCustomConstants:
 
   #书籍所在位置
   local: C:\Users\WU\Downloads\Telegram Desktop
-
-  #OpenAi
-  openai:
-    token: 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
-    timeout: 5000

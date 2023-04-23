@@ -2,6 +2,7 @@ package com.Zlibrary.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -17,14 +18,29 @@ import java.time.LocalDateTime;
 @TableName("user")
 public class User {
 
-    @TableId()
+    @TableId(type = IdType.AUTO)
+    @ApiModelProperty(value = "id")
     private Integer userId;
 
+    @ApiModelProperty(value = "密码")
     private String password;
 
+    @ApiModelProperty(value = "姓")
     private String firstName;
 
+    @ApiModelProperty(value = "名")
     private String lastName;
+
+    @ApiModelProperty(value = "邮箱")
+    private String email;
+
+    // 性别，0为不愿透露，1为男，2为女
+    @ApiModelProperty(value = "性别，0为不愿透露，1为男，2为女")
+    private Integer gender;
+
+    //年龄
+    @ApiModelProperty(value = "年龄")
+    private Integer age;
 
     //自动填充
     @TableField(fill = FieldFill.INSERT)

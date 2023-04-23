@@ -25,32 +25,9 @@ import java.util.stream.Collectors;
  * @date: 2022-04-14
  **/
 @Configuration
-@EnableOpenApi
 @ConditionalOnProperty(name = "knife4j.enable", havingValue = "true")
 public class OpenApiConfig {
 
-    private final OpenApiExtensionResolver openApiExtensionResolver;
-
-    public OpenApiConfig(OpenApiExtensionResolver openApiExtensionResolver) {
-        this.openApiExtensionResolver = openApiExtensionResolver;
-    }
-
-    @Bean
-    public Docket openApi() {
-
-        String groupName = "Test Group";
-        return new Docket(DocumentationType.OAS_30)
-                .groupName(groupName)
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .paths(PathSelectors.any())
-                .build()
-                .globalRequestParameters(getGlobalRequestParameters())
-                .globalResponses(HttpMethod.GET, getGlobalResponse())
-                .extensions(openApiExtensionResolver.buildExtensions(groupName))
-                .extensions(openApiExtensionResolver.buildSettingExtensions());
-    }
 
     private List<Response> getGlobalResponse() {
         return ResponseStatus.HTTP_STATUS_ALL.stream().map(

@@ -25,7 +25,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
-        //设置逻辑删除默认值
+        //设置逻辑删除默认值,0为没删除，1为删除
         this.setFieldValByName("deleteStatus", 0, metaObject);
 
     }
