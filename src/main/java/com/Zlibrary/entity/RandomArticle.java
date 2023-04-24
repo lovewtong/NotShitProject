@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @author: sy
  * @date: 2022-08-09
  **/
-@ApiModel(value = "userInformation")
+@ApiModel(value = "articleInformation")
 @Data
 @TableName("article")
 public class RandomArticle {

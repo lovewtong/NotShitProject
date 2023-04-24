@@ -41,11 +41,12 @@ public class ResultData<T> {
         return resultData;
     }
 
-    public static <T> ResultData<T> success() {
+    public static <T> ResultData<T> success(int code, String message, T data) {
         ResultData<T> resultData = new ResultData<>();
-        resultData.setStatus(ReturnCode.RC100.getCode());
+        resultData.setStatus(code);
 //        resultData.setSuccess(true);
-        resultData.setMessage(ReturnCode.RC100.getMessage());
+        resultData.setMessage(message);
+        resultData.setData(data);
         return resultData;
     }
 

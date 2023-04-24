@@ -24,5 +24,20 @@
       "name": "myCustomConstants.startTime",
       "type": "java.lang.String",
       "description": "Description for myCustomConstants.startTime."
+    },
+    {
+      "name": "spring.mail.from",
+      "type": "java.lang.String",
+      "description": "Description for spring.mail.from."
+    },
+    {
+      "name": "myCustomConstants.email",
+      "type": "java.lang.String",
+      "description": "Description for myCustomConstants.email."
+    },
+    {
+      "name": "myCustomConstants.id",
+      "type": "java.lang.String",
+      "description": "Description for myCustomConstants.id."
     }
   ] }

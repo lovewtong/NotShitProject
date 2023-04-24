@@ -27,4 +27,7 @@ public class CustomizationProperties {
 
     @Value("${myCustomConstants.local}")
     String local;
+
+    @Value("${myCustomConstants.email}")
+    String email;
 }

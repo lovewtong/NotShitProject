@@ -35,12 +35,16 @@ public class User {
     private String email;
 
     // 性别，0为不愿透露，1为男，2为女
-    @ApiModelProperty(value = "性别，0为不愿透露，1为男，2为女")
+    @ApiModelProperty(value = "性别，0为不愿透露，1为男，2为女，默认为0")
     private Integer gender;
 
-    //年龄
+    // 年龄
     @ApiModelProperty(value = "年龄")
     private Integer age;
+
+    // 激活状态
+    @ApiModelProperty(value = "激活状态,0为未激活，1为激活，默认为0")
+    private Integer activationStatus;
 
     //自动填充
     @TableField(fill = FieldFill.INSERT)
@@ -52,8 +56,7 @@ public class User {
     //逻辑删除
     @TableLogic
     @TableField(fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "删除状态，0为未删除，1为删除，默认为0")
     private Integer deleteStatus;
-
-    //文章 作者名 日期 类别 标签
 
 }

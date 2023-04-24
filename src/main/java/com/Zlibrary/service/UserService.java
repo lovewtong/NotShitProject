@@ -39,10 +39,17 @@ public interface UserService extends IService<User> {
         return this.getOne(wrapper);
     }
 
+    // 判断用户是否存在，基于用户id存在，账号已激活的情况下再判断的三次判断
+    default User getByIdAliveStatus(Integer id) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("id", id).eq("delete_status", 0);
+        return this.getOne(wrapper);
+    }
+
     // 判断用户是否存在，基于用户id存在的情况下再判断的二次判断
     default User getByIdStatus(Integer id) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("id", id).eq("deleteStatus", 0);
+        wrapper.eq("id", id).eq("activation_status", 1);
         return this.getOne(wrapper);
     }
 
