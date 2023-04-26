@@ -14,7 +14,6 @@ import lombok.Data;
  **/
 @ApiModel(value = "userInformation")
 @Data
-
 public class Collection {
 
     // 收藏ID自增

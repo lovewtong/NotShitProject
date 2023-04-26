@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @className: UserController
- * @description: TODO 类描述
+ * @description: 用户接口controller
  * @author: sy
  * @date: 2023-04-23
  **/
@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.*;
 @ApiSupport(author = "sy")
 public class UserController {
 
+
     private final UserService userService;
     private final UserMapper userMapper;
+
 
     public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
@@ -37,7 +39,13 @@ public class UserController {
         return user.getDeleteStatus() == 1;
     }
 
-    // 查询所有用户信息,无条件分页查询，防止数据量较大情况下，查询时间过长
+    /**
+     * 查询所有用户信息,无条件分页查询，防止数据量较大情况下，查询时间过长
+     *
+     * @param currentPage page
+     * @param pageSize    size
+     * @return ResultData 用户list
+     */
     @ApiOperation(value = "查询所有用户信息", httpMethod = "GET")
     @GetMapping("/findAll")
     public ResultData SelByPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage,
@@ -57,10 +65,15 @@ public class UserController {
 
     }
 
-    // 根据ID查询用户信息
+    /**
+     * 根据ID查询用户信息
+     *
+     * @param id 用户ID
+     * @return ResultData code,msg,用户Data
+     */
     @ApiOperation(value = "根据ID查询用户信息", httpMethod = "GET")
     @GetMapping("/findById")
-    public ResultData findById(Integer id) {
+    public ResultData findById(@RequestParam(value = "userId") Integer id) {
 
         // 判断用户是否存在，existsById方法封装在UserService中
         if (!userService.existsById(id)) {
@@ -69,14 +82,18 @@ public class UserController {
         if (userService.getById(id).getDeleteStatus() == 1) {
             return ResultData.fail(404, "该用户不存在");
         } else {
-            User user = userService.getById(id);
             return ResultData.success(userService.getById(id));
         }
 
 
     }
 
-    // 新增用户信息
+    /**
+     * 新增用户信息，需要经过邮箱的验证
+     *
+     * @param user 用户详细信息
+     * @return ResultData code,msg
+     */
     @ApiOperation(value = "新增用户信息", httpMethod = "POST")
     @PostMapping("/insert")
     public ResultData insert(@RequestBody User user) {
@@ -92,7 +109,12 @@ public class UserController {
 
     }
 
-    // 根据ID修改用户信息
+    /**
+     * 根据ID修改用户信息
+     *
+     * @param user 用户需要修改的详细信息
+     * @return ResultData code,msg
+     */
     @ApiOperation(value = "根据ID修改用户信息", httpMethod = "PUT")
     @PutMapping("/updateById")
     public ResultData updateById(@RequestBody User user) {
@@ -115,7 +137,14 @@ public class UserController {
         }
     }
 
-    // 换绑邮箱
+    /**
+     * 换绑邮箱
+     *
+     * @param id       用户id
+     * @param oldEmail 需要被修改的邮箱
+     * @param newEmail 修改后的邮箱
+     * @return ResultData code,msg
+     */
     @ApiOperation(value = "换绑邮箱", httpMethod = "PUT")
     @PutMapping("/updateEmail")
     public ResultData updateEmail(@RequestParam Integer id,
@@ -148,7 +177,12 @@ public class UserController {
     }
 
 
-    // 根据ID删除用户信息，逻辑删除
+    /**
+     * 根据ID删除用户信息，逻辑删除
+     *
+     * @param id 用户id
+     * @return ResultData code,msg
+     */
     @ApiOperation(value = "根据ID删除用户信息", httpMethod = "GET")
     @DeleteMapping("/deleteById")
     public ResultData deleteById(Integer id) {

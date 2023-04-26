@@ -46,7 +46,6 @@ public class RandomArticle {
     @ApiModelProperty(value = "删除状态，0为没删除，1为删除")
     private Integer deleteStatus;
 
-
     public RandomArticle() {
     }
 }

@@ -12,7 +12,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -39,58 +38,73 @@ public class RandomController {
         this.randomService = randomService;
     }
 
-    //插入一条数据
+    /**
+     * 新增一篇文章
+     *
+     * @param randomArticle 用户详细信息
+     * @return ResultData code,msg,data:randomArticle
+     */
+    // 插入一篇文章
     @ApiOperation(value = "插入一条数据", httpMethod = "POST")
     @PostMapping("/insert")
-    public RandomArticle insert(@RequestBody RandomArticle randomArticle) {
+    public ResultData insert(@RequestBody RandomArticle randomArticle) {
 
-        return randomArticle;
+        randomMapper.insert(randomArticle);
+        return ResultData.success(randomArticle);
 
     }
 
-    //没数据新增一条，有数据修改一条
+    /**
+     * 没数据新增一条，有数据修改一条
+     *
+     * @param randomArticle 用户详细信息
+     * @return ResultData code,msg,data:randomArticle
+     */
     @ApiOperation(value = "新增或者修改", httpMethod = "PUT")
     @PutMapping("/saveOrUpdate")
-    public RandomArticle saveOrUpdate(@RequestBody RandomArticle randomArticle) {
+    public ResultData saveOrUpdate(@RequestBody RandomArticle randomArticle) {
 
         randomService.saveOrUpdate(randomArticle);
 
-        return randomArticle;
+        return ResultData.success(randomArticle);
 
     }
 
-    //随机阅读
+    /**
+     * 随机阅读文章
+     * 获得文章总数，再随机生成1-count之间的随机数字
+     *
+     * @return ResultData code,msg,data:randomArticle
+     */
     @ApiOperation(value = "随机根据ID读取文章", httpMethod = "GET")
     @GetMapping("/randomRead")
-    public RandomArticle randomRead() {
+    public ResultData randomRead() {
 
-        //获得总数
+        // 获得总数
         long count = randomService.count();
 
-        //第一种，逻辑有问题
-//
-//        Random rand = new Random();
-//
-//        //返回值在范围[0,num) 即[0,num)
-//        int n1 = rand.nextInt(i + 1);
-
-        //第二种，random.nextInt(max)表示生成[0,max]之间的随机数，然后对(max-min+1)取模。
+        // random.nextInt(max)表示生成[0,max]之间的随机数，然后对(max-min+1)取模。
         int max = (int) count;
         int min = 1;
         Random random = new Random();
 
         int num = random.nextInt(max) % (max - min + 1) + min;
 
-        return randomService.getById(num);
+        return ResultData.success("这是第" + num + "篇文章");
     }
 
-    //每日阅读
+    /**
+     * 每日阅读
+     * 从一个设置好的初始值开始计算,超过最大文章数就进入循环
+     *
+     * @return ResultData code,msg,data:randomArticle
+     */
     @ApiOperation(value = "每日阅读", httpMethod = "GET")
     @GetMapping("/DailyRead")
-    public RandomArticle DailyRead() {
+    public ResultData DailyRead() {
 
-        //格式化时间
-        SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        // 格式化时间
+        // SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
         //设定初始值
         long time = customizationProperties.getStartTime();
@@ -112,32 +126,48 @@ public class RandomController {
         long count = randomService.count();
 
         if (count > num3) {
-            return randomService.getById(num3);
+            randomService.getById(num3);
+            return ResultData.success(randomService.getById(num3));
         } else {
 
             long num4 = num3 - count;
             long num5 = num4 % count;
 
             if (num5 == 0) {
-                return randomService.getById(count);
+                randomService.getById(count);
+                return ResultData.success(randomService.getById(count));
             } else {
-                return randomService.getById(num5);
+                randomService.getById(num5);
+                return ResultData.success(randomService.getById(num5));
             }
 
         }
 
     }
 
-    //根据ID查询详细数据
+    /**
+     * 根据ID查询详细数据
+     *
+     * @param id 用户id
+     * @return ResultData code,msg,data:randomArticle
+     */
     @ApiOperation(value = "根据ID读取文章", httpMethod = "GET")
     @GetMapping("/IdRead")
-    public RandomArticle IdRead(@RequestParam(value = "id") Integer id) {
+    public ResultData IdRead(@RequestParam(value = "id") Integer id) {
 
-        return randomService.getById(id);
+        randomService.getById(id);
+
+        return ResultData.success(randomService.getById(id));
 
     }
 
-    //无条件的分页查询
+    /**
+     * 无条件的分页查询
+     *
+     * @param currentPage page
+     * @param size size
+     * @return ResultData code,msg,data:randomArticle list
+     */
     @ApiOperation(value = "不带条件的分页查询", httpMethod = "GET")
     @GetMapping("/SelByPage")
     public ResultData SelByPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage,
@@ -149,23 +179,5 @@ public class RandomController {
         return ResultData.success(new PageBean<>(randomArticlePage.getTotal(), randomArticlePage.getRecords()));
     }
 
-//    public RandomArticle ReadEpub() throws IOException {
-//        // 从文件中读取EPUB书籍
-//        InputStream epubInputStream = epubAnalysis.class.getResourceAsStream("123.epub");
-//        Book book = (new EpubReader()).readEpub(epubInputStream);
-//
-//        // 获取书籍中的全部章节
-//        List<Resource> chapters = book.getContents();
-//
-//        // 逐一打印每个章节的内容
-//        for (nl.siegmann.epublib.domain.Resource chapter : chapters) {
-//            System.out.println(new String(chapter.getData()));
-//        }
-//
-//        // 关闭输入流
-//        epubInputStream.close();
-//
-//        return null;
-//    }
 
 }
