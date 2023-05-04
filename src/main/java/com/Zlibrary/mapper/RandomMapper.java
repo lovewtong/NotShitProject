@@ -1,6 +1,5 @@
 package com.Zlibrary.mapper;
 
-import com.Zlibrary.controller.RandomController;
 import com.Zlibrary.entity.RandomArticle;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

@@ -1,4 +1,4 @@
-package com.Zlibrary.controller;
+package com.Zlibrary.controller.user;
 
 import com.Zlibrary.entity.User;
 import com.Zlibrary.mapper.UserMapper;

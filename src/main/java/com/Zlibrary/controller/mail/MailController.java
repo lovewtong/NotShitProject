@@ -2,6 +2,7 @@ package com.Zlibrary.controller.mail;
 
 import com.Zlibrary.response.ResultData;
 import com.Zlibrary.service.MailService;
+import com.Zlibrary.service.impl.MailServiceImpl;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -52,7 +53,7 @@ public class MailController {
         // 将验证码存入redis中
         redisTemplate.opsForValue().set(key, code, 5, TimeUnit.MINUTES);
         // 发送邮件
-        mailService.sendMail(email, "注册验证码", "您所注册的NotShitProject的验证码是：" + code);
+        MailServiceImpl.sendMail(email, "注册验证码", "您所注册的NotShitProject的验证码是：" + code);
         return ResultData.success(200, "key is" + key, "code is" + code);
 
     }

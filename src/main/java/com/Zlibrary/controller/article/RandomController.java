@@ -1,4 +1,4 @@
-package com.Zlibrary.controller;
+package com.Zlibrary.controller.article;
 
 import com.Zlibrary.config.customization.CustomizationProperties;
 import com.Zlibrary.entity.RandomArticle;

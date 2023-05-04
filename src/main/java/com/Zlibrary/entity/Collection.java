@@ -7,12 +7,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * @className: Collection
+ * @className: CollectionController
  * @description: 用户收藏表，作为文章和用户的中间表
  * @author: sy
  * @date: 2023-04-23
  **/
-@ApiModel(value = "userInformation")
+@ApiModel(value = "collectionInformation")
 @Data
 public class Collection {
 
@@ -35,7 +35,7 @@ public class Collection {
 
     // 收藏状态
     @ApiModelProperty(value = "收藏状态，0为没收藏，1为收藏，当第一次收藏，即创建收藏时，状态为1")
-    private Integer collectionStatus;
+    private boolean collectionStatus;
 
     public Collection() {
     }
