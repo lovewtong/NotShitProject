@@ -75,16 +75,16 @@ public class UserController {
     @GetMapping("/findById")
     public ResultData findById(@RequestParam(value = "userId") Integer id) {
 
-        // 判断用户是否存在，existsById方法封装在UserService中
-        if (!userService.existsById(id)) {
-            return ResultData.fail(404, "该用户不存在");
-        }
-        if (userService.getById(id).getDeleteStatus() == 1) {
-            return ResultData.fail(404, "该用户不存在");
-        } else {
-            return ResultData.success(userService.getById(id));
-        }
+        User userId = userService.getById(id);
 
+        // 判断用户是否存在，existsById方法封装在UserService中
+        if (userId == null) {
+            return ResultData.fail(404, "该用户不存在");
+        }
+        if (userId.getDeleteStatus() == 1) {
+            return ResultData.fail(404, "该用户不存在");
+        }
+        return ResultData.success(userService.getById(id));
 
     }
 
@@ -183,7 +183,7 @@ public class UserController {
      * @param id 用户id
      * @return ResultData code,msg
      */
-    @ApiOperation(value = "根据ID删除用户信息", httpMethod = "GET")
+    @ApiOperation(value = "根据ID删除用户信息", httpMethod = "DELETE")
     @DeleteMapping("/deleteById")
     public ResultData deleteById(Integer id) {
 

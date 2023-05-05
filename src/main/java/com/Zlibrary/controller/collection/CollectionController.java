@@ -3,11 +3,11 @@ package com.Zlibrary.controller.collection;
 import com.Zlibrary.entity.Collection;
 import com.Zlibrary.entity.RandomArticle;
 import com.Zlibrary.entity.User;
-import com.Zlibrary.mapper.UserMapper;
 import com.Zlibrary.response.ResultData;
 import com.Zlibrary.service.CollectionService;
 import com.Zlibrary.service.RandomService;
 import com.Zlibrary.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,15 +21,14 @@ import org.springframework.web.bind.annotation.*;
 public class CollectionController {
 
 
-    private CollectionService collectionService;
-    private UserService userService;
-    private UserMapper userMapper;
-    private RandomService randomService;
+    private final CollectionService collectionService;
+    private final UserService userService;
+    private final RandomService randomService;
 
-    public CollectionController(CollectionService collectionService, UserService userService, UserMapper userMapper) {
+    @Autowired
+    public CollectionController(CollectionService collectionService, UserService userService, RandomService randomService) {
         this.collectionService = collectionService;
         this.userService = userService;
-        this.userMapper = userMapper;
         this.randomService = randomService;
     }
 
