@@ -3,6 +3,8 @@ package com.Zlibrary.controller.mail;
 import com.Zlibrary.config.customization.CustomizationProperties;
 import com.Zlibrary.config.email.EmailConfig;
 import com.Zlibrary.response.ResultData;
+import com.Zlibrary.service.EmailService;
+import com.Zlibrary.service.MailService;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.annotations.Api;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -46,10 +48,6 @@ public class MailController {
     @PostMapping("/sendMail")
     public ResultData sendMail(@RequestParam("email") String email) {
 
-        EmailConfig emailConfig = new EmailConfig(new CustomizationProperties(), new JavaMailSenderImpl());
-//        JavaMailSender mailSender = new JavaMailSenderImpl();
-//        CustomizationProperties customizationProperties = new CustomizationProperties();
-//        EmailConfig mailService = new EmailConfig(customizationProperties, mailSender);
         // 区分Redis的key命名
         String prefix = "email_";
         String key = prefix + email;
@@ -59,7 +57,7 @@ public class MailController {
         // 将验证码存入redis中
         redisTemplate.opsForValue().set(key, code, 5, TimeUnit.MINUTES);
         // 发送邮件
-        emailConfig.sendMail(email, "注册验证码", "您所注册的NotShitProject的验证码是：" + code);
+        EmailService.sendMail(email, "注册验证码", "您所注册的NotShitProject的验证码是：" + code);
         return ResultData.success(200, "key is" + key, "code is" + code);
 
     }

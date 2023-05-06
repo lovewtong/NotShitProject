@@ -18,7 +18,7 @@ spring:
     host: smtp.qq.com
     port: 465
     username: libraryofhermes@foxmail.com
-    password: sjlbmqbdmjjfdjcj
+    password: ozzipwdxxenvdjhi
 
     properties:
       mail.smtp.ssl.enable: true
@@ -116,9 +116,5 @@ myCustomConstants:
   #起始id
   id: 0
 
-  #书籍所在位置
-  local: C:\Users\WU\Downloads\Telegram Desktop
-
   # 发送邮件的邮箱
-#  email: libraryofhermes@foxmail.com
-  email: 2320948070@qq.com
+  email: libraryofhermes@foxmail.com

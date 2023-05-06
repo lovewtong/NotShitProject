@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @className: CustomizationProperties
- * @description: TODO 类描述
+ * @description: 自定义配置属性类
  * @author: sy
  * @date: 2022-10-10
  **/
@@ -19,12 +19,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CustomizationProperties {
 
+    // 自定义初始时间
     @Value("${myCustomConstants.startTime}")
     long startTime;
 
+    // 自定义id
     @Value("${myCustomConstants.id}")
     int id;
 
+    //
     @Value("${myCustomConstants.local}")
     String local;
 

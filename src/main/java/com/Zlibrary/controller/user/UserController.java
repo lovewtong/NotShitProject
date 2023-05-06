@@ -28,7 +28,6 @@ public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
 
-
     public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
         this.userMapper = userMapper;
@@ -51,6 +50,20 @@ public class UserController {
     public ResultData SelByPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer currentPage,
                                 @RequestParam(value = "size", required = false, defaultValue = "10") Integer pageSize) {
 
+        // 判断参数是否为空
+        if (pageSize == null || currentPage == null) {
+            return ResultData.fail("page or size is null!");
+        }
+
+        // 校验分页参数是否合法
+        if (pageSize < 1 || pageSize > 100) {
+            return ResultData.fail("page size must between 1 and 100");
+        }
+        if (currentPage < 1) {
+            return ResultData.fail("page number must be greater than or equal to 1");
+        }
+
+        // 校验
         // 只查询未删除的用户和已激活的用户
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("delete_status", 0);
