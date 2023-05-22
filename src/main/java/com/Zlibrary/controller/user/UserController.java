@@ -38,6 +38,11 @@ public class UserController {
         return user.getDeleteStatus() == 1;
     }
 
+    // 判断用户是否激活
+    private boolean isUserActive(User user) {
+        return user.getActivationStatus() == 1;
+    }
+
     /**
      * 查询所有用户信息,无条件分页查询，防止数据量较大情况下，查询时间过长
      *
@@ -66,15 +71,15 @@ public class UserController {
         // 校验
         // 只查询未删除的用户和已激活的用户
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("delete_status", 0);
-        queryWrapper.eq("activation_status", 1);
+        queryWrapper.eq("delete_status", 0)
+                .eq("activation_status", 1);
 
         // 分页查询
         Page<User> page = new Page<>(currentPage, pageSize);
         // 条件queryWrapper
         Page<User> userPage = userMapper.selectPage(page, queryWrapper);
-        new PageBean<>(userPage.getTotal(), userPage.getRecords());
-        return ResultData.success(new PageBean<>(userPage.getTotal(), userPage.getRecords()));
+        PageBean<User> userPageBean = new PageBean<>(userPage.getTotal(), userPage.getRecords());
+        return ResultData.success(userPageBean);
 
     }
 
@@ -97,7 +102,11 @@ public class UserController {
         if (userId.getDeleteStatus() == 1) {
             return ResultData.fail(404, "该用户不存在");
         }
-        return ResultData.success(userService.getById(id));
+//        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.eq("delete_status", 0);
+//        User one = userService.getOne(queryWrapper);
+        User byId = userService.getById(id);
+        return ResultData.success(byId);
 
     }
 

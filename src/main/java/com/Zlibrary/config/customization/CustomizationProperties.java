@@ -28,9 +28,10 @@ public class CustomizationProperties {
     int id;
 
     //
-    @Value("${myCustomConstants.local}")
-    String local;
+//    @Value("${myCustomConstants.local}")
+//    String local;
 
+    // 自定义发送邮箱
     @Value("${myCustomConstants.email}")
     String email;
 }
