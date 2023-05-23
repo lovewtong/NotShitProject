@@ -1,27 +1,25 @@
-package com.Zlibrary.service.impl;
+package com.Zlibrary.config.email;
 
 import com.Zlibrary.config.customization.CustomizationProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
+
 
 /**
- * @className: MailServiceImpl
+ * @className: EmailConfig
  * @description: TODO 类描述
  * @author: sy
- * @date: 2023-05-04
+ * @date: 2023-05-05
  **/
-@Service
-public class MailServiceImpl {
+public class EmailConfig {
 
     final CustomizationProperties customizationProperties;
-    @Autowired
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
 
-    public MailServiceImpl(JavaMailSender javaMailSender, CustomizationProperties customizationProperties) {
-        this.javaMailSender = javaMailSender;
+
+    public EmailConfig(CustomizationProperties customizationProperties, JavaMailSender javaMailSender) {
         this.customizationProperties = customizationProperties;
+        this.javaMailSender = javaMailSender;
     }
 
     /**
@@ -31,7 +29,7 @@ public class MailServiceImpl {
      * @param subject 邮件主题
      * @param content 邮件正文
      */
-    public static void sendMail(String to, String subject, String content) {
+    public void sendMail(String to, String subject, String content) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(customizationProperties.getEmail());
         message.setTo(to);
