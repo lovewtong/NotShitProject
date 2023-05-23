@@ -1,10 +1,14 @@
 package com.Zlibrary.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 
 /**
  * @className: CollectionController
@@ -31,7 +35,8 @@ public class Collection {
 
     // 收藏时间,即创建时间
     @ApiModelProperty(value = "收藏时间")
-    private String collectionTime;
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime collectionTime;
 
     // 收藏状态
     @ApiModelProperty(value = "收藏状态，0为没收藏，1为收藏，当第一次收藏，即创建收藏时，状态为1")
